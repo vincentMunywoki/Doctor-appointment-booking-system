@@ -7,7 +7,7 @@ const Appointment = () => {
 
   // get doctors by docid
   const {docId} = useParams()
-  const {doctors} = useContext(AppContext)
+  const {doctors, currencySymbol} = useContext(AppContext)
 
   const [docInfo,setDocInfo] = useState(null)
 
@@ -48,8 +48,8 @@ const Appointment = () => {
             </p>
             <p className='text-sm text-gray-500 max-w-[700px] mt-1' >{docInfo.about}</p>
           </div>
-          <p>
-            Appointment fee: <span>{docInfo.fees}</span>
+          <p className='text-gray-500 font-medium mt-4' >
+            Appointment fee: <span className='text-gray-700' >{currencySymbol}{docInfo.fees}</span>
           </p>
         </div>
       </div>
