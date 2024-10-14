@@ -10,16 +10,52 @@ const Appointment = () => {
   const {doctors, currencySymbol} = useContext(AppContext)
 
   const [docInfo,setDocInfo] = useState(null)
+  //create states for Doc infromaion
+  const [docSlots,setDocSlots] = useState([]) 
+  const [slotIndex,setSlotIndex] = useState(0)
+  const [slotTime,setSlotTime] = useState('')
 
   const fetchDocInfo = async () => {
     const docInfo = doctors.find(doc => doc._id === docId) //create variable called docInfo to store doctors information
-    setDocInfo(docInfo)
-    console.log(docInfo)
+    setDocInfo(docInfo) // when doc infor changes then the async function will be executed
   }
+
+  // calculate available slots of a doctor using async functiom
+  const getAvailableSlots = async() => {
+    setDocSlots([])
+  }
+
+  // getting current date
+  let today = new Date()
+
+  for (let i = 0; i < 7; i++){
+    //getting date with index
+    let currentDate = new Date(today)
+    currentDate.setDate(today.getDate()+i) // get future 7 days from now.
+
+    //setting end time of the date with index
+    let endTime = new Date()
+    endTime.setDate(today.getDate()+1)
+    endTime.setHours(21,0,0,0) //define endTime.setHours with 3 0s for minutes and seconds
+  }
+
+  // setting Hours
+  if (today.getDate() === currentDate.getDate()) { // check if today is equal to current date
+    currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10)
+    currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
+  } else {
+    currentDate.setHours(10)
+    currentDate.setMinutes(0)
+  } 
 
   useEffect(()=> {
       fetchDocInfo() // call the function doc info
   },[doctors,docId])
+
+  // whenever docinfor changes this function is executed
+  useEffect(()=>{
+    getAvailableSlots()
+  },[docInfo])
 
 
   return docInfo && (  // check if doct infor has a label using && operator
@@ -52,6 +88,8 @@ const Appointment = () => {
             Appointment fee: <span className='text-gray-700' >{currencySymbol}{docInfo.fees}</span>
           </p>
         </div>
+      </div>
+      <div>       
       </div>
         
     </div>
