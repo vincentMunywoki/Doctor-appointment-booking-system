@@ -23,49 +23,53 @@ const Appointment = () => {
   // calculate available slots of a doctor using async functiom
   const getAvailableSlots = async() => {
     setDocSlots([])
+    
+    // getting current date
+    let today = new Date()
+    
+    for (let i = 0; i < 7; i++){
+
+      //getting date with index
+      let currentDate = new Date(today)
+      currentDate.setDate(today.getDate()+i) // get future 7 days from now.
+
+      //setting end time of the date with index
+      let endTime = new Date()
+      endTime.setDate(today.getDate()+1)
+      endTime.setHours(21,0,0,0) //define endTime.setHours with 3 0s for minutes and seconds
+
+      // setting Hours
+      if (today.getDate() === currentDate.getDate()) { // check if today is equal to current date
+        currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10)
+        currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
+      } else {        
+        currentDate.setHours(10)
+        currentDate.setMinutes(0)
+      } 
+
+      let timeSlots = []
+
+      while (currentDate < endTime) {
+      let formattedTime = currentDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+
+      // add slot to array
+      timeSlots.push({
+        datetime:new Date(currentDate),
+        time: formattedTime
+      })
+      
+      // increment time by 30 minutes
+      currentDate.setMinutes(currentDate.getMinutes() + 30)
+
+      }
+    
+      setDocSlots(prev => ([...prev, timeSlots]))
+
+    }
+
   }
 
-  // getting current date
-  let today = new Date()
-
-  for (let i = 0; i < 7; i++){
-    //getting date with index
-    let currentDate = new Date(today)
-    currentDate.setDate(today.getDate()+i) // get future 7 days from now.
-
-    //setting end time of the date with index
-    let endTime = new Date()
-    endTime.setDate(today.getDate()+1)
-    endTime.setHours(21,0,0,0) //define endTime.setHours with 3 0s for minutes and seconds
-  }
-
-  // setting Hours
-  if (today.getDate() === currentDate.getDate()) { // check if today is equal to current date
-    currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10)
-    currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
-  } else {
-    currentDate.setHours(10)
-    currentDate.setMinutes(0)
-  } 
-
-  let timeSlots = []
-
-  while (currentDate < endTime) {
-    let formattedTime = currentDate.toLocalTimeString([], {hour: '2-digit', minute: '2-digit'})
-
-    // add slot to array
-    timeSlots.push({
-      datetime:new Date(currentDate),
-      time: formattedTime
-    })
-
-    // increment time by 30 minutes
-    currentDate.setMinutes(currentDate.getMinutes() + 30)
-  }
-
-  setDocSlots(prev => ([...prev, timeSlots]))
-
-
+  
   useEffect(()=> {
       fetchDocInfo() // call the function doc info
   },[doctors,docId])
