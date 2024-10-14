@@ -48,6 +48,24 @@ const Appointment = () => {
     currentDate.setMinutes(0)
   } 
 
+  let timeSlots = []
+
+  while (currentDate < endTime) {
+    let formattedTime = currentDate.toLocalTimeString([], {hour: '2-digit', minute: '2-digit'})
+
+    // add slot to array
+    timeSlots.push({
+      datetime:new Date(currentDate),
+      time: formattedTime
+    })
+
+    // increment time by 30 minutes
+    currentDate.setMinutes(currentDate.getMinutes() + 30)
+  }
+
+  setDocSlots(prev => ([...prev, timeSlots]))
+
+
   useEffect(()=> {
       fetchDocInfo() // call the function doc info
   },[doctors,docId])
@@ -56,6 +74,10 @@ const Appointment = () => {
   useEffect(()=>{
     getAvailableSlots()
   },[docInfo])
+
+  useEffect(()=>{
+    console.log(docSlots)
+  },[docSlots])
 
 
   return docInfo && (  // check if doct infor has a label using && operator
