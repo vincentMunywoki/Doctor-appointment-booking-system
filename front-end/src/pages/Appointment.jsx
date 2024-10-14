@@ -8,6 +8,7 @@ const Appointment = () => {
   // get doctors by docid
   const {docId} = useParams()
   const {doctors, currencySymbol} = useContext(AppContext)
+  const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
   const [docInfo,setDocInfo] = useState(null)
   //create states for Doc infromaion
@@ -31,11 +32,11 @@ const Appointment = () => {
 
       //getting date with index
       let currentDate = new Date(today)
-      currentDate.setDate(today.getDate()+i) // get future 7 days from now.
+      currentDate.setDate(today.getDate() + i) // get future 7 days from now.
 
       //setting end time of the date with index
       let endTime = new Date()
-      endTime.setDate(today.getDate()+1)
+      endTime.setDate(today.getDate() + i)
       endTime.setHours(21,0,0,0) //define endTime.setHours with 3 0s for minutes and seconds
 
       // setting Hours
@@ -115,9 +116,21 @@ const Appointment = () => {
           </p>
         </div>
       </div>
-      <div>       
-      </div>
-        
+
+      {/*-------Booking slots-------*/}
+      <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700' >
+        <p>Booking slots</p>
+        <div>
+          {
+            docSlots.length && docSlots.map((item,index)=>(
+              <div key={index} >
+                <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
+                <p>{item[0] && item[0].datetime.getDate()}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>        
     </div>
   )
 }
