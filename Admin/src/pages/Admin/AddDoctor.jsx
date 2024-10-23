@@ -16,21 +16,21 @@ const AddDoctor = () => {
           <p>Upload Doctor Picture</p>
         </div>
 
-        <div>
-          <div>
-            <div>
+        <div className='flex flex-col lg:flex-row items-start gap-10 text-gray-600'>
+          <div className='w-full lg:flex-1 flex-col gap-4'>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Doctor Name</p>
               <input type="text" placeholder='Name' required />
             </div>
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Doctor Email</p>
               <input type="email" placeholder='Email' required />
             </div>
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Doctor Password</p>
               <input type="password" placeholder='Password' required />
             </div>
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Experience</p>
               <select name="" id="">
                 <option value="1 Year">1 Year</option>
@@ -46,14 +46,14 @@ const AddDoctor = () => {
               </select>
             </div>
 
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Fees</p>
               <input type="number" placeholder='fees' required />
             </div>
 
           </div>
-          <div>
-            <div>
+          <div className='w-full lg:flex-1 flex flex-col gap-4'>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Speciality</p>
               <select name="" id="">
                 <option value="General physician">General physician</option>
@@ -65,12 +65,12 @@ const AddDoctor = () => {
               </select>
             </div>
 
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Education</p>
               <input type="text" placeholder='Education' required />
             </div>
 
-            <div>
+            <div className='flex-1 flex flex-col gap-1'>
               <p>Address</p>
               <input type="text" placeholder='Address 1' required />
               <input type="text" placeholder='Address 2' required />
