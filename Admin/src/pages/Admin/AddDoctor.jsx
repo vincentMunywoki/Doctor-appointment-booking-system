@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { assets } from '../../assets/assets'
+import { AdminContext } from '../../context/AdminContext'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const AddDoctor = () => {
 
@@ -14,6 +17,61 @@ const AddDoctor = () => {
   const [degree,setDegree] = useState('')
   const [address1,setAddress1] = useState('')
   const [address2,setAddress2] = useState('')
+
+  const { backendUrl, aToken } = useContext(AdminContext)
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault()
+
+    try {
+      if(!docImg) {
+        return toast.error('Imag not selected')        
+      }
+
+      const formData = new FormData()
+
+      formData.append('image',docImg)
+      formData.append('name',name)
+      formData.append('email',email)
+      formData.append('password',password)
+      formData.append('experience',experience)
+      formData.append('fees',fees)
+      formData.append('about',about)
+      formData.append('speciality',speciality)
+      formData.append('degree',degree)
+      formData.append('address',JSON.stringify({line1:address1,line2:address2}))
+
+      // console log form data
+      formData.forEach((value,key)=>{
+        console.log(`${key} : ${value}`);
+      })
+
+      // saving doctors information in our database
+      const {data} = await axios.post(backendUrl + '/api/admin/add-doctor',formData, {headers:{aToken}})
+
+      if(data.success) {
+        toast.success(data.message)
+
+        // reset entries after adding a doctor
+        setDocImg(false)
+        setName('')
+        setPassword('')
+        setEmail('')
+        setAddress1('')
+        setAddress2('')
+        setDegree('')
+        setAbout('')
+        setFees('')
+
+      } else {
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+      console.log(error)
+    }
+  }
 
 
   return (
