@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
 
 const AddDoctor = () => {
+
+  const [docImg,setDocImg] = useState(false)
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [experience,setExperience] = useState('1 Year')
+  const [fees,setFees] = useState('')
+  const [about,setAbout] = useState('')
+  const [speciality,setSpeciality] = useState('General physician')
+  const [degree,setDegree] = useState('')
+  const [address1,setAddress1] = useState('')
+  const [address2,setAddress2] = useState('')
+
+
   return (
     <form className='m-5 w-full' >
 
