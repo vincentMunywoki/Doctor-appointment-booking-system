@@ -12,7 +12,7 @@ const Navbar = () => {
     const logout = () => {
         navigate('/')
         aToken && setAToken('')
-        aToken && localStorage.removeItem('aToken') // className='w-44 rounded-lg cursor-pointer'
+        aToken && localStorage.removeItem('aToken') 
     }
 
   return (

@@ -15,20 +15,20 @@ const addDoctor = async (req,res) => {
 
         //checking for all data to add doctor
         if (!name || !email || !password || !speciality || !degree || !experience || !about ||fees || !address) {
-            return resjon({success:false,message:"Missing details"})
+            return res.jon({success:false,message:"Missing details"})
         }
         
         // validating email format
         if (!validator.isEmail(email)) {
-            return resjon({success:false,message:"Please enter a valid email"})
+            return res.jon({success:false,message:"Please enter a valid email"})
         }
 
         // validating strong password
-        if(password.length < 8){
-            return resjon({success:false,message:"please enter a strong pasword"})
+        if(password.length < 8) {
+            return res.jon({success:false,message:"please enter a strong pasword"})
         }
 
-        // password Encription Hashing doc password
+        // password Encryption Hashing doc password
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt)
 
@@ -52,6 +52,7 @@ const addDoctor = async (req,res) => {
         }
 
         const newDoctor = new doctorModel(doctorData)
+        //save doctor data in db
         await newDoctor.save()
 
 
@@ -77,7 +78,7 @@ const loginAdmin = async (req, res) => {
             res.json({success:true,token})
 
         } else {
-            res.json({success:false,message:"Invlid credetials"})
+            res.json({success:false,message:"Invalid credetials"})
         }
 
     } catch(error) {
