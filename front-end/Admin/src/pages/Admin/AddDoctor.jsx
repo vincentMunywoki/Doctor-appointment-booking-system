@@ -25,7 +25,7 @@ const AddDoctor = () => {
 
     try {
       if(!docImg) {
-        return toast.error('Imag not selected')        
+        return toast.error('Image not selected')        
       }
 
       const formData = new FormData()

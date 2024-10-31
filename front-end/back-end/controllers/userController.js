@@ -1,7 +1,7 @@
 //I have created API logic for the users like; Login,Register,update profile, book, cancel and display Appointment, make payment gateway,
 import validator from 'validator'
 import bcrypt from 'bcrypt'
-import userModel from '../models/userModel'
+import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken' // for user to login
 
 

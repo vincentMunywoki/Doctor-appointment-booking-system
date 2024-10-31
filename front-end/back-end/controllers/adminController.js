@@ -10,7 +10,7 @@ const addDoctor = async (req,res) => {
 
     try {
 
-        const{ name, email, password, speciality, degree, experience, about, fees, address} = req.body
+        const { name, email, password, speciality, degree, experience, about, fees, address} = req.body
         const imageFile = req.imageFile
 
         //checking for all data to add doctor
@@ -100,4 +100,4 @@ const allDoctors = async(req,res) => {
     }
 }
 
-export {addDoctor,loginAdmin}
+export {addDoctor,loginAdmin, allDoctors}

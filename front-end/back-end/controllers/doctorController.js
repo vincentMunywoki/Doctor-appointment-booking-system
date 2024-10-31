@@ -1,4 +1,4 @@
-import doctorModel from "../models/doctorModel"
+import doctorModel from "../models/doctorModel.js"
 
 
 

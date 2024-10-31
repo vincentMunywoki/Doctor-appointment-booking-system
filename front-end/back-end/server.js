@@ -7,9 +7,9 @@ import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import userRouter from './routes/userRoute.js'
 
-// App config
+// App config 
 const app = express()
-const port = process.env.PORT || 4000
+const port =  process.env.PORT || 4000
 connectDB()
 connectCloudinary()
 
