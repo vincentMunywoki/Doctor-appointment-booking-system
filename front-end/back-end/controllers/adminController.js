@@ -7,8 +7,8 @@ import jwt from 'jsonwebtoken'
 
 // API for ading doctor
 const addDoctor = async (req,res) => {
-    console.log(req.file); // Log the file to check if it's being received
-    console.log(req.body); // Log the body to check received data
+    console.log('Request Body:', req.body); // Log the request body
+    console.log('Uploaded File:', req.file); // Log the uploaded file
 
     try {
 
