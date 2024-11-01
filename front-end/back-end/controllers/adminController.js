@@ -5,66 +5,73 @@ import doctorModel from "../models/doctorModel.js"
 import jwt from 'jsonwebtoken'
 
 
-// API for ading doctor
-const addDoctor = async (req,res) => {
 
+// API for adding a doctor
+const addDoctor = async (req, res) => {
     try {
+        const { name, email, password, speciality, degree, experience, about, fees, address } = req.body;
+        const imageFile = req.imageFile;
 
-        const { name, email, password, speciality, degree, experience, about, fees, address} = req.body
-        const imageFile = req.imageFile
-
-        //checking for all data to add doctor
-        if (!name || !email || !password || !speciality || !degree || !experience || !about ||fees || !address) {
-            return res.jon({success:false,message:"Missing details"})
+        // Check for all required fields
+        if (!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address) {
+            return res.json({ success: false, message: "Missing details" });
         }
-        
-        // validating email format
+
+        // Validate email format
         if (!validator.isEmail(email)) {
-            return res.jon({success:false,message:"Please enter a valid email"})
+            return res.json({ success: false, message: "Please enter a valid email" });
         }
 
-        // validating strong password
-        if(password.length < 8) {
-            return res.jon({success:false,message:"please enter a strong pasword"})
+        // Validate password strength
+        if (password.length < 8) {
+            return res.json({ success: false, message: "Please enter a strong password" });
         }
 
-        // password Encryption Hashing doc password
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password,salt)
+        // Password encryption
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
+        // Check if imageFile is provided
+        if (!imageFile || !imageFile.path) {
+            return res.json({ success: false, message: "Image file is missing or invalid" });
+        }
 
-        // upload image to cloudinary
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path, {resource_type:"image"})
-        const imageUrl = imageUpload.secure_url
+        // Upload image to Cloudinary
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+        const imageUrl = imageUpload.secure_url;
+
+        // Parse address if needed
+        let parsedAddress;
+        try {
+            parsedAddress = JSON.parse(address);
+        } catch (error) {
+            return res.json({ success: false, message: "Invalid address format" });
+        }
 
         const doctorData = {
             name,
             email,
-            image:imageUrl,
-            password:hashedPassword,
+            image: imageUrl,
+            password: hashedPassword,
             speciality,
             degree,
             experience,
             about,
             fees,
-            address:JSON.parse(address),
-            date:Date.now()
-        }
+            address: parsedAddress,
+            date: Date.now(),
+        };
 
-        const newDoctor = new doctorModel(doctorData)
-        //save doctor data in db
-        await newDoctor.save()
+        const newDoctor = new doctorModel(doctorData);
+        await newDoctor.save();
 
-
-        res.json({success:true,message:"Doctor Added"})
-
-        
+        res.json({ success: true, message: "Doctor Added" });
     } catch (error) {
-        console.log(error)
-        res.json({success:false,message:error.message})
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
+};
 
-}
 
 // API for admin login
 const loginAdmin = async (req, res) => {
