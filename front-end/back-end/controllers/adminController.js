@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/doctorModel.js";
 import jwt from 'jsonwebtoken';
+import path from "path"; // Import path module to help with file paths
 
 // API for adding doctor
 const addDoctor = async (req, res) => {
