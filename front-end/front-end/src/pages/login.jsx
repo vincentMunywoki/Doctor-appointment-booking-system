@@ -49,7 +49,7 @@ const login = () => {
   };
 
   return (
-    <form className="min-h-[80vh] flex items-center">
+    <form onSubmit={onSubmitHandler}  className="min-h-[80vh] flex items-center">
       <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg ">
         {/* Tunel operator*/}
 
@@ -93,7 +93,7 @@ const login = () => {
             required
           />
         </div>
-        <button className="bg-primary text-white w-full py-2 rounded-md text-base">
+        <button type="submit" className="bg-primary text-white w-full py-2 rounded-md text-base">
           {state === "Sign Up" ? "Create Account" : "Login"}
         </button>
         {state === "Sign Up" ? (

@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {assets} from '../assets/assets'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../../front-end/src/context/AppContext';
 
 const Navbar = () => {
 
     const navigate = useNavigate();
 
+    const {token,setToken} = useContext(AppContext)
+
     const [showMenu, setShowMenu] = useState(false)
-    const [token,setToken] = useState(true)
+   
 
 
   return (
