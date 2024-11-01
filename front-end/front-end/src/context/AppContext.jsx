@@ -9,6 +9,7 @@ const AppContextProvider = (props) => {
 
     const currencySymbol = 'Ksh.'
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    
     const [doctors,setDoctors] = useState([])
 
      //store user authtoken
