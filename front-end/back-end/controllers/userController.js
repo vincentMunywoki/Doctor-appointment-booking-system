@@ -94,9 +94,13 @@ const getProfile = async (req,res) => {
     try {
 
         const { userId } = req.body
+        const userData = await userModel.findById(userId).select('-password')
+
+        res.json({success:true,userData})
         
     } catch (error) {
-        
+        console.log(error)
+        res.json({success:false,message:error.message})        
     }
 }
 
