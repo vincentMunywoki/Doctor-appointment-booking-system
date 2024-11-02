@@ -1,3 +1,5 @@
+{/*
+}
 import React, { useContext, useState } from 'react'
 import {assets} from '../assets/assets'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -58,7 +60,8 @@ const Navbar = () => {
             }
             <img onClick={()=>setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />   
 
-            {/**-------Mobile Menu-------*/}    
+            {/**-------Mobile Menu-------*/    /* <<<<<<<<<<<<<<
+
             <div className={` ${showMenu ? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
                 <div className='flex items-center justify-between px-5 py-6'>
                     <img className='w-36 rounded-lg' src={assets.logo} alt="" />
@@ -79,3 +82,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+*/}
