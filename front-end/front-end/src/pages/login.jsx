@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const login = () => {
 
   const { backendUrl, token, setToken } = useContext(AppContext)
-  const navigate = useNavigate()
+  const navigate = useNavigate() // to home page after login
 
 
   const [state, setState] = useState("Sign Up");
@@ -52,13 +52,15 @@ const login = () => {
     }
   };
 
-  // redirect use to main page after login
+  // redirect user to main page after login
 
   useEffect(() => {
     if(token) {
-
+      navigate('/') // function to navigate to home page.
     }
   },[token])
+
+
 
   return (
     <form onSubmit={onSubmitHandler}  className="min-h-[80vh] flex items-center">
