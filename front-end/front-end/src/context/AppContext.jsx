@@ -12,8 +12,8 @@ const AppContextProvider = (props) => {
     
     const [doctors,setDoctors] = useState([])
 
-     //store user authtoken
-     const [token,setToken] = useState('')
+     //store user authtoken so that user maynot be logged out whenever site is refreshed.
+     const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
 
     
     const getDoctorsData = async() => {
