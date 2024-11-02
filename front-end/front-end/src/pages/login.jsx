@@ -2,10 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const login = () => {
 
   const { backendUrl, token, setToken } = useContext(AppContext)
+  const navigate = useNavigate()
+
+
   const [state, setState] = useState("Sign Up");
 
   // creatre state variables
@@ -52,7 +56,7 @@ const login = () => {
 
   useEffect(() => {
     if(token) {
-      
+
     }
   },[token])
 
