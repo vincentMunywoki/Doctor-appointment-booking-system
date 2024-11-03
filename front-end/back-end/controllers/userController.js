@@ -3,6 +3,7 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken' // for user to login
+import { v2 as cloudinary } from 'cloudinary'
 
 
 //API to register New user
@@ -117,6 +118,18 @@ const updateProfile = async (req,res) => {
         }
 
         await userModel.findByIdAndUpdate(userId,{name,phone,address:JSON.parse(address),dob,gender})
+
+        if (imageFile) {
+
+            // upload image to clodinary
+            const imageUpload = await cloudinary.uploader.upload(imageFile.path,{resource_type:'image'})
+            const imageUrl = imageUpload.secure_url
+
+            await userModel.findByIdAndUpdate(userId,{image:imageUrl})
+            
+        }
+
+        res.json({success:true,message:"Profile updated"})
         
     } catch (error) {
         console.log(error)
@@ -124,4 +137,4 @@ const updateProfile = async (req,res) => {
     }
 }
 
-export{registerUser,loginUser, getProfile}
+export{registerUser,loginUser, getProfile,updateProfile}
