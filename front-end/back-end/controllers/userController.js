@@ -104,4 +104,15 @@ const getProfile = async (req,res) => {
     }
 }
 
+
+// API to Update user profile
+const updateProfile = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:error.message})        
+    }
+}
+
 export{registerUser,loginUser, getProfile}
