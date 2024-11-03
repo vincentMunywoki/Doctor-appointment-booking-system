@@ -15,6 +15,9 @@ const AppContextProvider = (props) => {
      //store user authtoken so that user maynot be logged out whenever site is refreshed.
      const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
 
+     //update profile function
+     const [userData, setUserData] = useState(false)
+
     
     const getDoctorsData = async() => {
              
@@ -32,6 +35,16 @@ const AppContextProvider = (props) => {
             toast.error(error.message)          
         }
 
+    }
+
+    const loadUserProfileData = async () => {
+
+        try {
+            
+        } catch (error) {
+            console.log(error)  
+            toast.error(error.message)
+        }
     }
 
     const value = {
