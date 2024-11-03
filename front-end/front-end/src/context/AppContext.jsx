@@ -55,11 +55,15 @@ const AppContextProvider = (props) => {
         }
     }
 
+    //use functions in any component
+
     const value = {
         doctors,
         currencySymbol,
         token,setToken,
-        backendUrl
+        backendUrl,
+        userData,setUserData,
+        loadUserProfileData
     }
     
     useEffect(()=>{
