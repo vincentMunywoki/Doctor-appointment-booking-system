@@ -66,6 +66,14 @@ const AppContextProvider = (props) => {
         getDoctorsData()
     },[])
 
+    useEffect(() => {
+        if (token) {
+            loadUserProfileData()            
+        } else {
+            setUserData(false)
+        }
+    },[token])
+
     return(
         <AppContext.Provider value={value}>
             {props.children}
