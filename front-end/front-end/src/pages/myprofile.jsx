@@ -25,7 +25,7 @@ const myprofile = () => {
   const[isEdit,setIsEdit] = useState(false)
 
 
-  return (
+  return userData && (
     <div className='max-w-lg flex flex-col gap-2-2 text-sm'>
       <img className='w-36 rounded' src={userData.image} alt="" />
 
