@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext'
 
 const myprofile = () => {
 
-  const {userData,setUserData} = useContext(AppContext)
+  const {userData,setUserData, token, backendUrl, loadUserProfileData} = useContext(AppContext)
 
   /*
   const [userData,setUserData] = useState({
@@ -23,6 +23,11 @@ const myprofile = () => {
 
 
   const[isEdit,setIsEdit] = useState(false)
+  const [image,setImage] = useState(false)
+
+  const updateUseProfileData = async () => {
+
+  }
 
 
   return userData && (
