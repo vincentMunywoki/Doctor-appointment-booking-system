@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 
 const AddDoctor = () => {
+  
 
   const [docImg,setDocImg] = useState(false)
   const [name,setName] = useState('')
