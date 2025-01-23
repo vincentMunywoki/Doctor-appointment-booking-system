@@ -6,5 +6,6 @@ export default {
 }
   filter: drop-shadow(0 0 2em #61dafbaa);
   filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #61dafbaa);
 
 
