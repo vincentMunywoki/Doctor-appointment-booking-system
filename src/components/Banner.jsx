@@ -3,6 +3,7 @@ import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 
 const Banner = () => {
+    
 
     const navigate = useNavigate()
   return (
