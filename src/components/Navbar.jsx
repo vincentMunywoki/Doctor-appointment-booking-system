@@ -5,6 +5,7 @@ import {assets} from '../assets/assets'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../../front-end/src/context/AppContext';
 
+
 const Navbar = () => {
 
     const navigate = useNavigate();
