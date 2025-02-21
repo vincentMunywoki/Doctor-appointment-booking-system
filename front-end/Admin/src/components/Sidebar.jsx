@@ -34,3 +34,7 @@ const Sidebar = () => {
 }
 
 export default Sidebar
+
+{
+  "name": "front-end",
+  "version": "0.0.0",
