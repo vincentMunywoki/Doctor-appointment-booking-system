@@ -7,7 +7,3 @@ export default defineConfig({
 })
 
 
-
-{
-  "name": "front-end",
-  "version": "0.0.0",
