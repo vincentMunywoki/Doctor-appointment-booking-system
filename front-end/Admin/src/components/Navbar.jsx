@@ -27,3 +27,7 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+{
+  "name": "front-end",
+  "version": "0.0.0",
