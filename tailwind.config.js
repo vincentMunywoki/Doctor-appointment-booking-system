@@ -16,3 +16,7 @@ export default {
   },
   plugins: [],
 }
+
+{
+  "name": "front-end",
+  "version": "0.0.0",
