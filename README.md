@@ -36,7 +36,7 @@ Database: MongoDB (for storing user and application data).
 
 **How to Use**
 
-Clone the repository.
+Clone the repository.,
 Install dependencies using npm install for both the backend and frontend.
 Set up your MongoDB database and configure environment variables.
 Run the application
