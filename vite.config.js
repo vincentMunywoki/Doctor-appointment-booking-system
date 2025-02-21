@@ -5,3 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 })
+
+
+
+{
+  "name": "front-end",
+  "version": "0.0.0",
