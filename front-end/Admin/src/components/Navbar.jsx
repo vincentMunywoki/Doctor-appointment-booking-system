@@ -13,6 +13,7 @@ const Navbar = () => {
         navigate('/')
         aToken && setAToken('')
         aToken && localStorage.removeItem('aToken') 
+        
     }
 
   return (
