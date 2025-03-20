@@ -7,8 +7,7 @@ const Navbar = () => {
 
     const {aToken,setAToken} = useContext(AdminContext)
 
-    const navigate = useNavigate()
-    
+    const navigate = useNavigate()  
     
 
     const logout = () => {
